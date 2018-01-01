@@ -1,0 +1,51 @@
+[global]
+    alignment = left
+    markup = yes
+    bounce_freq = 0
+    browser = /usr/bin/firefox -new-tab
+    dmenu = /usr/bin/dmenu -p dunst:
+    follow = none
+    font = Terminus (TTF) 12
+    format = "<b>%s</b>\n%b"
+    # geometry [{width}]x{height}][+/-{x}+/-{y}]
+    geometry = "0-10+20"
+    history_length = 20
+    horizontal_padding = 8
+    idle_threshold = 120
+    ignore_newline = no
+    indicate_hidden = yes
+    line_height = 0
+    monitor = 0
+    padding = 8
+    separator_color = frame
+    separator_height = 1
+    show_age_threshold = 60
+    show_indicators = yes
+    shrink = no
+    sort = yes
+    startup_notification = false
+    sticky_history = yes
+    transparency = 0
+    word_wrap = yes
+
+[shortcuts]
+close = mod4+x
+close_all = mod4+shift+x
+context = mod4+c
+
+[urgency_low]
+    background = "#282a36"
+    foreground = "#F8F8F2"
+    timeout = 10
+
+[urgency_normal]
+    background = "#6272a4"
+    foreground = "#F8F8F2"
+    timeout = 20
+
+[urgency_critical]
+    background = "#ff5555"
+    foreground = "#F8F8F2"
+    timeout = 0
+
+
