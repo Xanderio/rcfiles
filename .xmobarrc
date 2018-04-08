@@ -11,7 +11,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader% }{ %battery% | %date%"
+   , template = "%StdinReader% } { %battery% | %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -42,5 +42,5 @@ Config {
 	  Run StdinReader
         , Run Date "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
 	, Run Com "/home/asieg/Scripts/battery.sh" [] "battery" 10
-        ]
+	]	
    }
