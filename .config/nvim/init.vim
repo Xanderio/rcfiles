@@ -19,10 +19,12 @@ Plug 'dag/vim-fish'
 Plug 'vim-airline/vim-airline'
 Plug 'mileszs/ack.vim'
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
 Plug 'junegunn/fzf'
+Plug 'StanAngeloff/php.vim'
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 call plug#end()
 
 " Color Theme
@@ -38,9 +40,9 @@ set updatetime=100
 
 set autoindent
 set list
-set relativenumber
+set relativenumber number
 set hlsearch
-set incsearch 
+set incsearch
 set backspace=indent,eol,start
 set enc=utf-8
 set ruler
@@ -52,10 +54,19 @@ set backupdir=~/.nvim/tmp/backup/
 set directory=~/.nvim/tmp/swap/
 set backup
 set noswapfile
+set wrap
+set list
+set showcmd
+set expandtab
+set ruler
+set tabstop=2
+set shiftwidth=2
+set smarttab
+
 
 let g:LanguageClient_serverCommands = {
-			\ 'haskell': ['hie', '--lsp']
-			\}
+      \ 'haskell': ['hie', '--lsp']
+      \}
 
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
@@ -68,3 +79,15 @@ if executable('ag')
   cnoreabbrev Ag AcK
   cnoreabbrev AG Ack
 endif
+
+function! FixWhitespaces() abort
+  let l:search = @/
+  let l:l = line('.')
+  let l:c = col('.')
+
+  %s/\s\+$//e
+
+  let @/ = l:search
+  call cursor(l:l, l:c)
+endfunction
+command! FixWhitespaces call FixWhitespaces()
