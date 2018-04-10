@@ -1,5 +1,6 @@
 import           XMonad
-import           XMonad.Hooks.DynamicLog  (xmobar)
+import           XMonad.Actions.PhysicalScreens
+import           XMonad.Hooks.DynamicLog        (xmobar)
 import           XMonad.Hooks.UrgencyHook
 import           XMonad.Util.EZConfig
 
@@ -10,7 +11,7 @@ main = xmonad =<< xmobar myConfig
 myConfig :: XConfig (Choose Tall (Choose (Mirror Tall) Full))
 myConfig = defaultConfig
       { borderWidth        = 1
-      , terminal           = "alacritty"
+      , terminal           = "kitty"
       , normalBorderColor  = "#81a1c1"
       , focusedBorderColor = "#d08770"
       , modMask            = mod4Mask
@@ -27,9 +28,15 @@ myKeys = [("M-<F2>", spawn "slock")
          ,("<XF86AudioStop>", spawn "mpc stop")
          ,("<XF86AudioNext>", spawn "mpc next")
          ,("<XF86AudioPrev>", spawn "mpc prev")
-         ,("M-s m", spawn "alacritty -e ncmpcpp")
-         ,("M-s j", spawn "alacritty -e jackline")
-         ,("M-s w", spawn "alacritty -e ~/Scripts/weather.fish")
+         ,("M-s m", spawn "kitty -e ncmpcpp")
+         ,("M-s j", spawn "kitty -e jackline")
+         ,("M-s w", spawn "kitty -e ~/Scripts/weather.fish")
          ,("M-s e", spawn "emacsclient -c")
+         ,("M-w" , viewScreen 0)
+         ,("M-e", viewScreen 1)
+         ,("M-r", viewScreen 2)
+         ,("M-W" , sendToScreen 0)
+         ,("M-E", sendToScreen 1)
+         ,("M-R", sendToScreen 2)
          ]
 

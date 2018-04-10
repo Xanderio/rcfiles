@@ -1,0 +1,9 @@
+setxkbmap de -option caps:escape
+xrandr --output DP2 --primary  --auto
+xrandr --output DP3 --right-of DP2
+xrandr --output LVDS1 --right-of DP3
+compton --config ~/.compton.config -b
+dunst &
+redshift &
+exec xmonad
+

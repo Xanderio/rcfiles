@@ -9,6 +9,7 @@ Plug 'shougo/neosnippet.vim'
 Plug 'shougo/neosnippet-snippets'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
 Plug 'mhinz/vim-signify'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -25,6 +26,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 Plug 'StanAngeloff/php.vim'
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'jreybert/vimagit'
+Plug 'alx741/vim-stylishask'
 call plug#end()
 
 " Color Theme
@@ -91,3 +94,18 @@ function! FixWhitespaces() abort
   call cursor(l:l, l:c)
 endfunction
 command! FixWhitespaces call FixWhitespaces()
+
+tnoremap <Esc><Esc> <C-\><C-n>
+cnoremap W w
+cnoremap Q q
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:airline_powerline_fonts = 1
