@@ -21,11 +21,13 @@ Plug 'dag/vim-fish'
 Plug 'vim-airline/vim-airline'
 Plug 'mileszs/ack.vim'
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+      \ 'branch': 'next',
+      \ 'do': 'bash install.sh',
+      \ }
 Plug 'junegunn/fzf'
 Plug 'neomutt/neomutt.vim'
+Plug 'StanAngeloff/php.vim'
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 call plug#end()
 
 function! Rename(file) abort
@@ -74,6 +76,15 @@ set backupdir=~/.nvim/tmp/backup/
 set directory=~/.nvim/tmp/swap/
 set backup
 set noswapfile
+set wrap
+set list
+set showcmd
+set expandtab
+set ruler
+set tabstop=2
+set shiftwidth=2
+set smarttab
+
 
 let g:LanguageClient_serverCommands = {
                         \ 'haskell': ['hie', '--lsp']
