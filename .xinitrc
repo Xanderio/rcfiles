@@ -1,1 +1,0 @@
-/home/asieg/.xinitrc##Linux.AsgardComputerCore
