@@ -9,13 +9,13 @@ main = xmonad =<< xmobar myConfig
 
 myConfig :: XConfig (Choose Tall (Choose (Mirror Tall) Full))
 myConfig = defaultConfig
-      { borderWidth        = 1
-      , terminal           = "alacritty"
-      , normalBorderColor  = "#81a1c1"
-      , focusedBorderColor = "#d08770"
-      , modMask            = mod4Mask
-      , focusFollowsMouse  = False
-      }
+ { borderWidth        = 1
+ , terminal           = "alacritty"
+ , normalBorderColor  = "#81a1c1"
+ , focusedBorderColor = "#d08770"
+ , modMask            = mod4Mask
+ , focusFollowsMouse  = False
+ }
       `additionalKeysP` myKeys
 
 
@@ -30,6 +30,6 @@ myKeys = [("M-<F2>", spawn "slock")
          ,("M-s m", spawn "alacritty -e ncmpcpp")
          ,("M-s j", spawn "alacritty -e jackline")
          ,("M-s w", spawn "alacritty -e ~/Scripts/weather.fish")
-         ,("M-s e", spawn "emacsclient -c")
+         ,("M-s r", spawn "pkill -USR1 redshift")
          ]
 
