@@ -1,7 +1,8 @@
+let g:python3_host_prog = '/usr/local/bin/python3.6'
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'arcticicestudio/nord-vim'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', {'on': 'Gstatus'}
 Plug 'scrooloose/syntastic'
 Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
@@ -24,11 +25,30 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ 'do': 'bash install.sh',
       \ }
 Plug 'junegunn/fzf'
+Plug 'neomutt/neomutt.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jreybert/vimagit'
 Plug 'alx741/vim-stylishask'
 call plug#end()
+
+function! Rename(file) abort
+  let l:f = expand('%')
+  execute 'saveas ' . shellquote(a:file) . ' | ' . 'bd! # | !rm ' . shellquote(l:f)
+endfunction
+command! -complete=file -nargs=1 Rename call Rename(<f-args>)
+
+function! FixWhitespaces() abort
+  let l:search = @/
+  let l:l = line('.')
+  let l:c = col('.')
+
+  %s/\s\+$//e
+
+  let @/ = l:search
+  call cursor(l:l, l:c)
+endfunction
+command! FixWhitespaces call FixWhitespaces()
 
 " Color Theme
 set termguicolors
@@ -42,6 +62,7 @@ let g:deoplete#enable_at_startup = 1
 set updatetime=100
 
 set autoindent
+set expandtab
 set list
 set relativenumber number
 set hlsearch
@@ -68,9 +89,15 @@ set smarttab
 
 
 let g:LanguageClient_serverCommands = {
-      \ 'haskell': ['hie', '--lsp']
-      \}
+                        \ 'haskell': ['hie', '--lsp']
+                        \}
 
+tnoremap <Esc><Esc> <C-\><C-n>
+
+cnoremap W w
+cnoremap Q q
+
+nnoremap <silent> <C-l> :nol<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
@@ -83,17 +110,12 @@ if executable('ag')
   cnoreabbrev AG Ack
 endif
 
-function! FixWhitespaces() abort
-  let l:search = @/
-  let l:l = line('.')
-  let l:c = col('.')
+let g:haskell_enable_quantification = 1
+let g:haskell_enable_typeroles = 1
+let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_indent_case_alternative = 1
 
-  %s/\s\+$//e
-
-  let @/ = l:search
-  call cursor(l:l, l:c)
-endfunction
-command! FixWhitespaces call FixWhitespaces()
+let g:hamlet_prevent_invalid_nesting = 0
 
 tnoremap <Esc><Esc> <C-\><C-n>
 cnoremap W w
