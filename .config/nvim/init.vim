@@ -1,8 +1,12 @@
-let g:python3_host_prog = '/usr/local/bin/python3.6'
+let uname = system('uname -s')
+if  uname == 'FreeBSD'
+  let g:python3_host_prog = '/usr/local/bin/python3.6'
+endif
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'diepm/vim-rest-console'
 Plug 'arcticicestudio/nord-vim'
-Plug 'tpope/vim-fugitive', {'on': 'Gstatus'}
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'ervandew/supertab'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'}
@@ -30,6 +34,8 @@ Plug 'StanAngeloff/php.vim'
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 Plug 'jreybert/vimagit'
 Plug 'alx741/vim-stylishask'
+Plug 'szw/vim-tags'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 function! Rename(file) abort
@@ -60,7 +66,8 @@ colorscheme nord
 let g:deoplete#enable_at_startup = 1
 
 set updatetime=100
-
+set exrc
+set secure
 set autoindent
 set expandtab
 set list
@@ -89,18 +96,22 @@ set smarttab
 
 
 let g:LanguageClient_serverCommands = {
-                        \ 'haskell': ['hie', '--lsp']
-                        \}
-
+      \ 'haskell': ['hie', '--lsp']
+      \}
+let mapleader="ö"
 tnoremap <Esc><Esc> <C-\><C-n>
 
 cnoremap W w
 cnoremap Q q
 
-nnoremap <silent> <C-l> :nol<CR>
+nnoremap <silent> <C-l> :noh<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <F8> :TagbarToggle<CR>
+
+map <silent> <Leader>ls :Denite buffer<CR>
+map <silent> <Leader>lf :Denite file_rec<CR>
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
