@@ -14,7 +14,4 @@ end
 # OPAM configuration
 . /home/asieg/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
 
-function updatevim
-    set -lx SHELL (which sh)
-    nvim +BundleInstall! +BundleClean +qall
-end
+set -x EDITOR nvim
