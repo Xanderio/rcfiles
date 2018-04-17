@@ -30,9 +30,10 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ }
 Plug 'junegunn/fzf'
 Plug 'neomutt/neomutt.vim'
-Plug 'StanAngeloff/php.vim'
-Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-Plug 'jreybert/vimagit'
+if executable("php")
+  Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+  Plug 'StanAngeloff/php.vim'
+endif
 Plug 'alx741/vim-stylishask'
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
@@ -98,6 +99,7 @@ set smarttab
 let g:LanguageClient_serverCommands = {
       \ 'haskell': ['hie', '--lsp']
       \}
+
 let mapleader="ö"
 tnoremap <Esc><Esc> <C-\><C-n>
 
@@ -142,3 +144,4 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1

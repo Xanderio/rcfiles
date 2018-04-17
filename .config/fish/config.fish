@@ -14,4 +14,5 @@ end
 # OPAM configuration
 . /home/asieg/.opam/opam-init/init.fish > /dev/null 2> /dev/null or true
 
+set -x PATH ~/.cargo/bin $PATH
 set -x EDITOR nvim
