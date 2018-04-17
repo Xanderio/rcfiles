@@ -37,6 +37,7 @@ endif
 Plug 'alx741/vim-stylishask'
 Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 function! Rename(file) abort
@@ -94,7 +95,7 @@ set ruler
 set tabstop=2
 set shiftwidth=2
 set smarttab
-
+set backspace=indent,eol,start
 
 let g:LanguageClient_serverCommands = {
       \ 'haskell': ['hie', '--lsp']
@@ -114,6 +115,10 @@ nnoremap <F8> :TagbarToggle<CR>
 
 map <silent> <Leader>ls :Denite buffer<CR>
 map <silent> <Leader>lf :Denite file_rec<CR>
+nmap <silent> <Leader>T :enew<CR>
+nmap <silent> <Leader>l :bnext<CR>
+nmap <silent> <Leader>h :bprevious<CR>
+nmap <silent> <Leader>bq :bp <BAR> bd #<CR>
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -145,3 +150,8 @@ let g:syntastic_check_on_wq = 0
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
