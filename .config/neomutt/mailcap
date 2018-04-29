@@ -1,0 +1,5 @@
+# vim: filetype=mailcap
+text/html; /bin/qutebrowser %s --target window &> /dev/null; test=test -n "$DISPLAY"; needsterminal;
+text/html; w3m -dump -I %{charset} -T text/html %s ; copiousoutput;
+
+image/jpeg; w3m -o auto_image=TRUE imgdisplay=/usr/lib/w3m/w3mimgdisplay %s; copiousouput;

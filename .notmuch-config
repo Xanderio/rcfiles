@@ -31,7 +31,6 @@ path=/home/asieg/Maildir
 [user]
 name=Alexander Sieg
 primary_email=alex@xanderio.de
-other_email=xander.lp112@gmail.com;
 
 # Configuration for "notmuch new"
 #
@@ -48,7 +47,7 @@ other_email=xander.lp112@gmail.com;
 #		in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=new;unread;
 ignore=
 
 # Search configuration

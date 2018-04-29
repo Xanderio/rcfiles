@@ -1,0 +1,41 @@
+set realname='Alexander Sieg'
+set virtual_spoolfile=yes
+set folder=~/Maildir
+source ~/.config/neomutt/mailboxes
+set edit_headers=yes
+set sort = threads
+set strict_threads=yes
+set sort_aux=date-sent
+set editor="nvim -c 'startinsert' -c 'set tw=70' -c 'set wrap' '+/^$'"
+set pager_index_lines=10
+set charset=UTF-8
+set include
+set tilde
+set date_format="%a, %d. %b %H:%M"
+set sendmail="/usr/local/bin/msmtp"
+set use_from=yes
+set from=alex@xanderio.de
+set envelope_from=yes
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+set query_command = "notmuch address %s"
+set query_format="%4c %t %-70.70a %-70.70n %?e?(%e)?"
+set time_inc=60
+set record=~/Maildir/xanderio/Sent
+source ~/.config/neomutt/colors
+color progress white yellow
+
+
+# Limit view to current thread
+bind index <esc>L limit-current-thread
+bind index \cj sidebar-next
+bind index \Ck sidebar-prev
+bind index \Co sidebar-open
+bind editor <Tab> complete-query
+bind editor ^T complete
+
+auto_view text/html image/*
+set mailcap_path = "~/.config/neomutt/mailcap:/etc/mailcap"
+source ~/.config/neomutt/gpg.rc
+set pgp_use_gpg_agent=yes

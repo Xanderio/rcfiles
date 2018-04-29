@@ -41,6 +41,6 @@ Config {
         [
 	  Run StdinReader
         , Run Date "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
-	, Run Com "/home/asieg/Scripts/battery.sh" [] "battery" 10
+	, Run Com "/home/asieg/Scripts/battery.sh" [] "battery" 300
 	]	
    }

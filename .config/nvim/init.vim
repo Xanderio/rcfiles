@@ -1,11 +1,11 @@
+set runtimepath+=~/Sources/haskell-env
 let uname = system('uname -s')
 if  uname == 'FreeBSD'
   let g:python3_host_prog = '/usr/local/bin/python3.6'
 endif
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'diepm/vim-rest-console'
-Plug 'arcticicestudio/nord-vim'
+Plug 'iCyMind/NeoSolarized'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
 Plug 'ervandew/supertab'
@@ -23,19 +23,17 @@ Plug 'pbrisbin/vim-syntax-shakespeare'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'dag/vim-fish'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'mileszs/ack.vim'
 Plug 'autozimu/LanguageClient-neovim', {
       \ 'branch': 'next',
       \ 'do': 'bash install.sh',
       \ }
 Plug 'junegunn/fzf'
-Plug 'neomutt/neomutt.vim'
 if executable("php")
   Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
   Plug 'StanAngeloff/php.vim'
 endif
-Plug 'alx741/vim-stylishask'
-Plug 'szw/vim-tags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 call plug#end()
@@ -60,10 +58,8 @@ command! FixWhitespaces call FixWhitespaces()
 
 " Color Theme
 set termguicolors
-let g:nord_uniform_status_lines = 1
-let g:nord_comment_brightness = 15
-colorscheme nord
-
+set background=dark
+colorscheme NeoSolarized
 "Autocompletion
 let g:deoplete#enable_at_startup = 1
 
@@ -76,6 +72,7 @@ set list
 set relativenumber number
 set hlsearch
 set incsearch
+set inccommand=nosplit
 set backspace=indent,eol,start
 set enc=utf-8
 set ruler
@@ -113,8 +110,8 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
-map <silent> <Leader>ls :Denite buffer<CR>
-map <silent> <Leader>lf :Denite file_rec<CR>
+map <silent> <Leader>s :Denite buffer<CR>
+map <silent> <Leader>f :Denite file_rec<CR>
 nmap <silent> <Leader>T :enew<CR>
 nmap <silent> <Leader>l :bnext<CR>
 nmap <silent> <Leader>h :bprevious<CR>
@@ -144,13 +141,14 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_extensions = ['whitespace', 'tabline']
+let g:airline_theme = 'solarized'
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
